@@ -13,12 +13,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // instance of auth
+  // instancia do auth
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // sign user out
+  // desloga o usuario
   void signOut() {
-    // get auth service
+    // pega o serviço auth
     final authService = Provider.of<AuthService>(context, listen: false);
 
     authService.signOut();
@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Home Page'),
         actions: [
-          // sign out button
+          // botao de deslogar
           IconButton(
             onPressed: signOut,
             icon: const Icon(Icons.logout),
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // build a list of user except for the current logged in user
+  // controi a lista de usuario com excessao para o usuario que já está logado
   Widget _buildUserList() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
@@ -63,16 +63,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // build individual user list items
+  // constroi a lista de itens do usuario individual
   Widget _buildUserListItem(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
-    // display all users except current user
+    // mostra todos os usuários com excessao do usuario atual
     if (_auth.currentUser!.email != data['email']) {
       return ListTile(
         title: Text(data['email']),
         onTap: () {
-          // pass the clicked user's UID to the chat page
+          // passa a UID do usuario clicado para a chat page
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
         },
       );
     } else {
-      // return empty container
+      // retorna um container vazio
       return Container();
     }
   }

@@ -17,9 +17,9 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // sign in user
+  // loga o usuario
   void signIn() async {
-    // get the auth service
+    // pega o serviço de auth
     final authService = Provider.of<AuthService>(context, listen: false);
 
     try {
@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     const SizedBox(height: 50),
 
-                    // welcome back message
+                    // bem vindo de volta mensagem
                     const Text(
                       "Bem vindo de volta, sentimos sua falta!",
                       style: TextStyle(
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     const SizedBox(height: 10),
 
-                    // password textfield
+                    // senha textfield
                     MyTextField(
                       controller: passwordController,
                       hintText: 'Senha',
@@ -89,12 +89,12 @@ class _LoginPageState extends State<LoginPage> {
 
                     const SizedBox(height: 25),
 
-                    // sign in button
+                    // botao de entrar
                     MyButton(onTap: signIn, text: "Entrar"),
 
                     const SizedBox(height: 50),
 
-                    // not a member? register now
+                    // mensagem de "nao é um membro?" e texto de cadastre-se
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

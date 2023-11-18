@@ -18,7 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  // sign up user
+  // cadastra usuario
   void signUp() async {
     if (passwordController.text != confirmPasswordController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -29,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    // get auth service
+    // pega o serviço de auth
     final authService = Provider.of<AuthService>(context, listen: false);
 
     try {
@@ -69,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     const SizedBox(height: 50),
 
-                    // create account message
+                    // mensagem de criação de conta
                     const Text(
                       "Vamos criar sua conta!",
                       style: TextStyle(
@@ -88,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     const SizedBox(height: 10),
 
-                    // password textfield
+                    // senha textfield
                     MyTextField(
                       controller: passwordController,
                       hintText: 'Senha',
@@ -97,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     const SizedBox(height: 10),
 
-                    // confirm password textfield
+                    // confirmar senha textfield
                     MyTextField(
                       controller: confirmPasswordController,
                       hintText: 'Confirme sua senha',
@@ -106,12 +106,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     const SizedBox(height: 25),
 
-                    // sign up button
+                    // botao de registro/cadastro
                     MyButton(onTap: signUp, text: "Registrar"),
 
                     const SizedBox(height: 50),
 
-                    // already a member? register now
+                    // mensagem de "já é um membro?" e texto de entrar
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
