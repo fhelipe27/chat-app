@@ -3,24 +3,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthService extends ChangeNotifier {
-  // instance of auth
+  // instancia do auth
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  // instance of firestore
+  // instancia do firestore
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
-  // sign user in
+  // loga o usuario
   Future<UserCredential> signInWithEmailandPassword(
       String email, String password) async {
     try {
-      // sign in
+      // logar
       UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      // add a new document for the user in users collection if it doesn't already exists
+      // adiciona um novo documento para o usuario em users collection se já não existir
       _fireStore.collection('users').doc(userCredential.user!.uid).set({
         'uid': userCredential.user!.uid,
         'email': email,
@@ -28,13 +28,13 @@ class AuthService extends ChangeNotifier {
 
       return userCredential;
     }
-    // catch any errors
+    // captura qualquer erro que venha a ter
     on FirebaseAuthException catch (e) {
       throw Exception(e.code);
     }
   }
 
-// create a new user
+// cria um novo usuario
   Future<UserCredential> signUpWithEmailandPassword(
       String email, password) async {
     try {
@@ -44,7 +44,7 @@ class AuthService extends ChangeNotifier {
         password: password,
       );
 
-      // after creating the user, create a new document
+      // depois de criar um usuario, cria um novo documento
       _fireStore.collection('users').doc(userCredential.user!.uid).set({
         'uid': userCredential.user!.uid,
         'email': email,
@@ -56,7 +56,7 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-// sign user out
+// desloga o usuario
   Future<void> signOut() async {
     return await FirebaseAuth.instance.signOut();
   }

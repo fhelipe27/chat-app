@@ -15,7 +15,7 @@ class Message {
     required this.message,
   });
 
-  // convert to a map
+  // convert para um map
   Map<String, dynamic> toMap() {
     return {
       'senderId': senderId,
